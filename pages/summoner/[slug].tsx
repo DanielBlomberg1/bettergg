@@ -11,7 +11,6 @@ export default function SummonerPage({
   const gameversion = matchArr[0].info.gameVersion.split(".");
   const gameversionString = gameversion[0] + "." + gameversion[1] + ".1";
 
-  console.log("matches", matchArr);
   return (
     <div>
       <h1>{summonerData.name}</h1>
@@ -42,11 +41,9 @@ export default function SummonerPage({
 export async function getServerSideProps(context: any) {
   let { slug } = context.params;
   slug.trim();
-  console.log(slug);
 
   const response = await fetch(`${process.env.HOSTED_AT}/api/summoner/${slug}`);
   const summonerData: SummonerData = await response.json();
-  console.log("summoner response for name ", summonerData);
 
   const data = await fetch(
     "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" +
@@ -70,7 +67,6 @@ export async function getServerSideProps(context: any) {
       matchArr = [...matchArr, matchData];
     }
   }
-  console.log("MATCHES DOESNT PRINTS HERE : ", matchArr);
 
   return {
     props: { summonerData, matchArr }, // will be passed to the page component as props

@@ -10,7 +10,6 @@ interface MatchCardProps {
 }
 
 const MatchCard: FC<MatchCardProps> = ({ match, summonerid }) => {
-  console.debug("match", match);
   let playerWon = false;
   let inspectedParticipant: any;
 
@@ -36,60 +35,64 @@ const MatchCard: FC<MatchCardProps> = ({ match, summonerid }) => {
   const gameversion = match.info.gameVersion.split(".");
   const gameversionString = gameversion[0] + "." + gameversion[1] + ".1";
 
-  console.log(
-    "http://ddragon.leagueoflegends.com/cdn/" +
-      gameversionString +
-      "/img/profileicon/" +
-      inspectedParticipant.profileIcon +
-      ".png"
-  );
-  console.log(inspectedParticipant.chmapi);
+  const KDA = (
+    (inspectedParticipant.kills + inspectedParticipant.assists) /
+    inspectedParticipant.deaths
+  ).toFixed(2);
 
   return (
     <div
       style={{ backgroundColor: playerWon ? "#58c26a" : "#e07d7d" }}
       className={styles.container}
     >
-      <div className={styles.content}>
-        <div className={styles.column}>
-          <Image
-            width={50}
-            height={50}
-            src={
-              "http://ddragon.leagueoflegends.com/cdn/" +
-              gameversionString +
-              "/img/champion/" +
-              inspectedParticipant.championName +
-              ".png"
-            }
-          />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          height: 200,
+          overflow: "hidden",
+        }}
+      >
+        <Image
+          width={200}
+          height={200}
+          src={
+            "http://ddragon.leagueoflegends.com/cdn/" +
+            gameversionString +
+            "/img/champion/" +
+            inspectedParticipant.championName +
+            ".png"
+          }
+        />
+        <div className={styles.content}>
+          <div className="column">
+            <h1>
+              {inspectedParticipant.kills} / {inspectedParticipant.deaths} /{" "}
+              {inspectedParticipant.assists}
+            </h1>
+            <h2
+              style={{
+                color:
+                  parseInt(KDA) > 8
+                    ? "#ffc011"
+                    : parseInt(KDA) > 0.5
+                    ? "#3f3e3e"
+                    : "#a51818",
+              }}
+            >
+              {" "}
+              {KDA}
+            </h2>
+          </div>
+          <div className="column">
+            <h1>Role</h1>
+            <h2>
+              {inspectedParticipant.individualPosition === "UTILITY"
+                ? "SUPPORT"
+                : inspectedParticipant.individualPosition}
+            </h2>
+          </div>
         </div>
-        <div className={styles.column}>
-          <p>Game Mode</p>
-          <div>{match.info.gameMode}</div>
-          <p>Game Duration</p>
-          <div>{Math.round(match.info.gameDuration / 60)} mins</div>
-        </div>
-        <div className={styles.column}>
-          {inspectedParticipant && (
-            <>
-              <p>Champion played</p>
-              <div>{inspectedParticipant.championName}</div>
-              <div>
-                {inspectedParticipant.kills} / {inspectedParticipant.deaths} /{" "}
-                {inspectedParticipant.assists}
-              </div>
-              <p>
-                {(
-                  inspectedParticipant.kills +
-                  inspectedParticipant.assists / inspectedParticipant.deaths
-                ).toFixed(2)}
-              </p>
-              {highestKillstreak != "singlekill" && <> {highestKillstreak} </>}
-            </>
-          )}
-        </div>
-        <div className={styles.column}></div>
       </div>
     </div>
   );
