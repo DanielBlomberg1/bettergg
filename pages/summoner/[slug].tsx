@@ -1,4 +1,6 @@
 import { InferGetServerSidePropsType } from "next";
+import Image from "next/image";
+import MatchCard from "../../components/Summoner/MatchCard";
 import { MatchData } from "../../types/matchData";
 import { SummonerData } from "../api/summoner/[...slug]";
 
@@ -6,16 +8,33 @@ export default function SummonerPage({
   summonerData,
   matchArr,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const gameversion = matchArr[0].info.gameVersion.split(".");
+  const gameversionString = gameversion[0] + "." + gameversion[1] + ".1";
+
   console.log("matches", matchArr);
   return (
     <div>
       <h1>{summonerData.name}</h1>
-      <h1>MatchHistory</h1>
-      <ul>
+      <Image
+        src={
+          "http://ddragon.leagueoflegends.com/cdn/" +
+          gameversionString +
+          "/img/profileicon/" +
+          summonerData.profileIconId +
+          ".png"
+        }
+        width={100}
+        height={100}
+      />
+
+      <div style={{ width: 800 }}>
+        <h1 style={{ textAlign: "center" }}>MatchHistory</h1>
         {matchArr.map((match: MatchData) => (
-          <li key={match.info.gameId}>{match.info.gameDuration}</li>
+          <div key={match.info.gameId}>
+            <MatchCard match={match} summonerid={summonerData.puuid} />
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
