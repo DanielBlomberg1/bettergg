@@ -7,6 +7,7 @@ export interface MatchData {
   info: {
     gameCreation: number;
     gameDuration: number;
+    gameEndTimestamp: number;
     gameId: number;
     gameMode: string;
     gameName: string;
@@ -139,19 +140,18 @@ export interface MatchData {
     }[];
     platformId: string;
     queueId: number;
-    tftGameLength: number;
-    tftGameVariant: string;
     teams: {
       bans: {
         championId: number;
         pickTurn: number;
       }[];
       objectives: {
-        firstRiftHerald: boolean;
-        firstBaron: boolean;
-        firstDragon: boolean;
-        firstInhibitor: boolean;
-        firstTower: boolean;
+        baron: { first: boolean; kills: number };
+        champion: { first: boolean; kills: number };
+        dragon: { first: boolean; kills: number };
+        inhibitor: { first: boolean; kills: number };
+        riftHerald: { first: boolean; kills: number };
+        tower: { first: boolean; kills: number };
       };
       teamId: number;
       win: boolean;
