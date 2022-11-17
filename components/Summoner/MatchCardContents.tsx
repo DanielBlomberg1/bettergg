@@ -38,6 +38,7 @@ export const MatchCardContents: FC<Props> = ({
         }}
       >
         <Image
+          alt="ChampionIcon"
           width={200}
           height={200}
           src={

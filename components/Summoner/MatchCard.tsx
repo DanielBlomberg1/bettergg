@@ -9,7 +9,6 @@ interface MatchCardProps {
 }
 
 const MatchCard: FC<MatchCardProps> = ({ match, summonerid }) => {
-  console.log(match);
   let playerWon = false;
   let inspectedParticipant: any;
 

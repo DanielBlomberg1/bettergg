@@ -1,7 +1,7 @@
-import type { NextPage } from 'next'
-import Link from 'next/link'
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Link from "next/link";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
@@ -13,9 +13,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Better.gg
-        </h1>
+        <h1 className={styles.title}>Better.gg</h1>
 
         <p className={styles.description}>
           Get better at league with statistics
@@ -23,27 +21,29 @@ const Home: NextPage = () => {
 
         <div className={styles.grid}>
           <Link href="/search">
-            <a className={styles.card}> 
+            <a className={styles.card}>
               <h2>Check your matches</h2>
-              <p>Find out weaknesses in your game and become better with our skill asessment.🤯 </p>
+              <p>
+                Find out weaknesses in your game and become better with our
+                skill asessment.🤯{" "}
+              </p>
             </a>
           </Link>
           <Link href="/items">
-            <a
-              className={styles.card}
-            >
+            <a className={styles.card}>
               <h2>Find new builds</h2>
-              <p>Browse through all the items in the game and gain the advantage.😎 </p>
+              <p>
+                Browse through all the items in the game and gain the
+                advantage.😎{" "}
+              </p>
             </a>
           </Link>
         </div>
       </main>
 
-      <footer className={styles.footer}>
-          This was made with NextJS
-      </footer>
+      <footer className={styles.footer}>This was made with NextJS</footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

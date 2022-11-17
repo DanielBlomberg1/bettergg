@@ -15,6 +15,7 @@ export default function SummonerPage({
     <div>
       <h1>{summonerData.name}</h1>
       <Image
+        alt="PlayerSummonerIcon"
         src={
           "http://ddragon.leagueoflegends.com/cdn/" +
           gameversionString +
