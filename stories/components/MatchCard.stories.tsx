@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { MatchCardContents } from "../../components/Summoner/MatchCardContents";
 
 export default {
-  title: "MatchCard",
+  title: "components/MatchCard",
   component: MatchCardContents,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {

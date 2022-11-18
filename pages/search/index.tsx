@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+import styles from "../../styles/SearchPage.module.css";
+
 const SearchPage = () => {
   const router = useRouter();
 
@@ -19,12 +21,18 @@ const SearchPage = () => {
 
   return (
     <>
-      <input
-        type="text"
-        onInput={(e) => setValue((e.target as HTMLTextAreaElement).value)}
-        placeholder="Type in your summoner name..."
-      />
-      <button onClick={() => fetchSummoner()}>Search</button>
+      <h1 className={styles.title}>Better.GG</h1>
+      <div className={styles.container}>
+        <input
+          className={styles.input}
+          type="text"
+          onInput={(e) => setValue((e.target as HTMLTextAreaElement).value)}
+          placeholder="Type in your summoner name..."
+        />
+        <button className={styles.button} onClick={() => fetchSummoner()}>
+          Search
+        </button>
+      </div>
     </>
   );
 };

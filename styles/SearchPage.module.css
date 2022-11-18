@@ -1,0 +1,50 @@
+.container {
+  margin-top: 2%;
+  display: flex;
+  position: flex;
+  flex-direction: row;
+  height: 90%;
+  width: 90%;
+  margin-left: 5%;
+  background: #272622;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 8px #3f3e3e;
+  justify-content: space-between;
+}
+
+.button {
+  background-color: #312f2b;
+  border-radius: 25px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: right;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  right: 0;
+}
+
+.input {
+  background-color: #252523;
+  border: none;
+  width: 92%;
+  margin-left: 1%;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  color: white;
+  margin-left: 5%;
+  margin-top: 2%;
+  font-size: 2.5rem;
+  font-weight: 900;
+}

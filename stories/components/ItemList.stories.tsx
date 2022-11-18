@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { IItem, ItemListHorizontal } from "../../components/Itemlist/ItemList";
 
 export default {
-  title: "ItemList",
+  title: "components/ItemList",
   component: ItemListHorizontal,
   argTypes: {
     items: { control: "array" },
