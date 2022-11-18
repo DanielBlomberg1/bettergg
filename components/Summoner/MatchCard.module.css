@@ -14,12 +14,17 @@
 .content {
   height: 100%;
   color: black;
-  padding: 5px;
+  padding: 8px;
   font-family: "Merriweather", serif;
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
   flex-wrap: wrap;
+}
+
+.xl {
+  font-size: 2.5rem;
+  font-weight: 900;
 }
 
 .arrow {

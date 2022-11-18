@@ -20,6 +20,7 @@ const Template: ComponentStory<typeof MatchCardContents> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
+  gamemode: "CLASSIC",
   gameversion: "12.21.1",
   playerWon: true,
   playedChampion: "Aatrox",
@@ -31,6 +32,7 @@ Primary.args = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
+  gamemode: "CLASSIC",
   gameversion: "12.21.1",
   playerWon: false,
   playedChampion: "KogMaw",

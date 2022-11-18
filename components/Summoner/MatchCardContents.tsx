@@ -4,6 +4,7 @@ import { MatchData } from "../../types/matchData";
 import styles from "./MatchCard.module.css";
 
 interface Props {
+  gamemode: string;
   match: MatchData;
   gameversion: string;
   playerWon: boolean;
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export const MatchCardContents: FC<Props> = ({
+  gamemode,
   gameversion,
   playerWon,
   playedChampion,
@@ -51,22 +53,27 @@ export const MatchCardContents: FC<Props> = ({
         />
         <div className={styles.content}>
           <div className="column">
-            <h1>
-              {kills} / {deaths} /{assists}
+            <h1> {gamemode} </h1>
+            <h1 className={styles.xl}>
+              <a>
+                {kills} / {deaths} /{assists}
+              </a>
             </h1>
-            <h2
+            <h3
               style={{
                 color: kda > 8 ? "#ffc011" : kda > 0.5 ? "#3f3e3e" : "#a51818",
               }}
             >
               {" "}
               {kda.toFixed(2)}
-            </h2>
+            </h3>
           </div>
-          <div className="column">
-            <h1>Role</h1>
-            <h2>{playedRole === "UTILITY" ? "SUPPORT" : playedRole}</h2>
-          </div>
+          {gamemode === "CLASSIC" && (
+            <div className="column" style={{ right: 5, textAlign: "right" }}>
+              <h1>Role</h1>
+              <h2>{playedRole === "UTILITY" ? "SUPPORT" : playedRole}</h2>
+            </div>
+          )}
         </div>
       </div>
     </div>
