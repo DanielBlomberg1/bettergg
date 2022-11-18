@@ -12,7 +12,7 @@ export interface IItem {
 
 const ItemListHorizontal: React.FC<IItemList> = ({ items, gameVersion }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ width: items.length * 64 }}>
       {items.map((item: IItem, index: number) => {
         return (
           <ItemIcon
