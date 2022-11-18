@@ -1,7 +1,8 @@
-import Image from "next/image";
 import { FC } from "react";
 import { MatchData } from "../../types/matchData";
 import { queueMode, queueModes, queues } from "../../utils/queueTypes";
+import ChampionIcon from "../Images/ChampionIcon";
+import SummonerSpellIcon from "../Images/SummonerSpellIcon";
 import styles from "./MatchCard.module.css";
 
 interface Props {
@@ -14,25 +15,25 @@ interface Props {
   kills: number;
   deaths: number;
   assists: number;
+  summoner1Id: number;
+  summoner2Id: number;
+  item0Id: number;
+  item1Id: number;
+  item2Id: number;
+  item3Id: number;
+  item4Id: number;
+  item5Id: number;
+  item6Id: number;
 }
 
-export const MatchCardContents: FC<Props> = ({
-  gameType,
-  gameversion,
-  playerWon,
-  playedChampion,
-  playedRole,
-  kills,
-  deaths,
-  assists,
-}) => {
-  const kda: number = (kills + assists) / deaths;
+export const MatchCardContents: FC<Props> = ({ ...props }) => {
+  const kda: number = (props.kills + props.assists) / props.deaths;
 
-  const gameMode: queueMode = queues[gameType];
+  const gameMode: queueMode = queues[props.gameType];
 
   return (
     <div
-      style={{ backgroundColor: playerWon ? "#58c26a" : "#e07d7d" }}
+      style={{ backgroundColor: props.playerWon ? "#58c26a" : "#e07d7d" }}
       className={styles.container}
     >
       <div
@@ -43,24 +44,31 @@ export const MatchCardContents: FC<Props> = ({
           overflow: "hidden",
         }}
       >
-        <Image
-          alt="ChampionIcon"
-          width={200}
-          height={200}
-          src={
-            "http://ddragon.leagueoflegends.com/cdn/" +
-            gameversion +
-            "/img/champion/" +
-            playedChampion +
-            ".png"
-          }
+        <ChampionIcon
+          gameVersion={props.gameversion}
+          playedChampion={props.playedChampion}
         />
         <div className={styles.content}>
-          <div className="column">
+          <div
+            className="column"
+            style={{
+              width: 64,
+            }}
+          >
+            <SummonerSpellIcon
+              gameVersion={props.gameversion}
+              id={props.summoner1Id}
+            />
+            <SummonerSpellIcon
+              gameVersion={props.gameversion}
+              id={props.summoner2Id}
+            />
+          </div>
+          <div className={styles.column} style={{}}>
             <h1> {gameMode?.name || "Uknown"} </h1>
             <h1 className={styles.xl}>
               <a>
-                {kills} / {deaths} /{assists}
+                {props.kills} / {props.deaths} /{props.assists}
               </a>
             </h1>
             <h3
@@ -72,10 +80,21 @@ export const MatchCardContents: FC<Props> = ({
               {kda.toFixed(2)}
             </h3>
           </div>
+          <div className={styles.column} style={{ margin: "50px" }}></div>
           {gameMode?.map === "Summoner's Rift" && (
-            <div className="column" style={{ right: 5, textAlign: "right" }}>
-              <h1>Role</h1>
-              <h2>{playedRole === "UTILITY" ? "SUPPORT" : playedRole}</h2>
+            <div
+              className={styles.column}
+              style={{
+                position: "relative",
+                flexDirection: "column",
+                right: "0",
+                textAlign: "right",
+              }}
+            >
+              <h1>
+                Role{" "}
+                {props.playedRole === "UTILITY" ? "SUPPORT" : props.playedRole}
+              </h1>
             </div>
           )}
         </div>

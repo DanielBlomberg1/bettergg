@@ -28,6 +28,8 @@ Primary.args = {
   kills: 10,
   deaths: 2,
   assists: 5,
+  summoner1Id: 4,
+  summoner2Id: 14,
 };
 
 export const Secondary = Template.bind({});
@@ -40,4 +42,6 @@ Secondary.args = {
   kills: 2,
   deaths: 17,
   assists: 10,
+  summoner1Id: 4,
+  summoner2Id: 14,
 };

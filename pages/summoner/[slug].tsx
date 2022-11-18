@@ -1,5 +1,5 @@
 import { InferGetServerSidePropsType } from "next";
-import Image from "next/image";
+import SummonerIcon from "../../components/Images/SummonerIcon";
 import MatchCard from "../../components/Summoner/MatchCard";
 import { MatchData } from "../../types/matchData";
 import { SummonerData } from "../api/summoner/[...slug]";
@@ -14,17 +14,9 @@ export default function SummonerPage({
   return (
     <div>
       <h1>{summonerData.name}</h1>
-      <Image
-        alt="PlayerSummonerIcon"
-        src={
-          "http://ddragon.leagueoflegends.com/cdn/" +
-          gameversionString +
-          "/img/profileicon/" +
-          summonerData.profileIconId +
-          ".png"
-        }
-        width={100}
-        height={100}
+      <SummonerIcon
+        gameVersion={gameversionString}
+        id={summonerData.profileIconId}
       />
 
       <div style={{ width: 800 }}>
