@@ -23,11 +23,10 @@ const MatchCard: FC<MatchCardProps> = ({ match, summonerid }) => {
 
   const gameversion = match.info.gameVersion.split(".");
   const gameversionString = gameversion[0] + "." + gameversion[1] + ".1";
-  console.log(match);
 
   return (
     <MatchCardContents
-      gamemode={match.info.gameMode}
+      gameType={match.info.queueId}
       match={match}
       gameversion={gameversionString}
       playerWon={playerWon}

@@ -1,3 +1,5 @@
+import { queueModes } from "../utils/queueTypes";
+
 export interface MatchData {
   metadata: {
     dataVersion: string;
@@ -155,7 +157,7 @@ export interface MatchData {
       win: boolean;
     }[];
     platformId: string;
-    queueId: number;
+    queueId: queueModes;
     teams: {
       bans: {
         championId: number;

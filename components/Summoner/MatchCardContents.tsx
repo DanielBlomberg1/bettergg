@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { FC } from "react";
 import { MatchData } from "../../types/matchData";
+import { queueMode, queueModes, queues } from "../../utils/queueTypes";
 import styles from "./MatchCard.module.css";
 
 interface Props {
-  gamemode: string;
+  gameType: queueModes;
   match: MatchData;
   gameversion: string;
   playerWon: boolean;
@@ -16,7 +17,7 @@ interface Props {
 }
 
 export const MatchCardContents: FC<Props> = ({
-  gamemode,
+  gameType,
   gameversion,
   playerWon,
   playedChampion,
@@ -26,6 +27,9 @@ export const MatchCardContents: FC<Props> = ({
   assists,
 }) => {
   const kda: number = (kills + assists) / deaths;
+
+  const gameMode: queueMode = queues[gameType];
+
   return (
     <div
       style={{ backgroundColor: playerWon ? "#58c26a" : "#e07d7d" }}
@@ -53,7 +57,7 @@ export const MatchCardContents: FC<Props> = ({
         />
         <div className={styles.content}>
           <div className="column">
-            <h1> {gamemode} </h1>
+            <h1> {gameMode?.name || "Uknown"} </h1>
             <h1 className={styles.xl}>
               <a>
                 {kills} / {deaths} /{assists}
@@ -68,7 +72,7 @@ export const MatchCardContents: FC<Props> = ({
               {kda.toFixed(2)}
             </h3>
           </div>
-          {gamemode === "CLASSIC" && (
+          {gameMode?.map === "Summoner's Rift" && (
             <div className="column" style={{ right: 5, textAlign: "right" }}>
               <h1>Role</h1>
               <h2>{playedRole === "UTILITY" ? "SUPPORT" : playedRole}</h2>
