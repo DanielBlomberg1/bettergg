@@ -1,4 +1,4 @@
-Better.gg
+# Better.gg
 
 ## is a league of legends statistics website made with NextJS
 
