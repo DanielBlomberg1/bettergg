@@ -1,12 +1,11 @@
 import Image from "next/image";
-import { FC } from "react";
 
 interface Props {
   gameVersion: string;
   playedChampion: string;
 }
 
-const ChampionIcon: FC<Props> = ({ gameVersion, playedChampion }) => {
+const ChampionIcon: React.FC<Props> = ({ gameVersion, playedChampion }) => {
   return (
     <Image
       alt="ChampionIcon"

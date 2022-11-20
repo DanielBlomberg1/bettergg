@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { FC } from "react";
 import SummonerSpells from "../../utils/summoner.json";
 
 interface Props {
@@ -7,7 +6,7 @@ interface Props {
   id: any;
 }
 
-const SummonerSpellIcon: FC<Props> = ({ gameVersion, id }) => {
+const SummonerSpellIcon: React.FC<Props> = ({ gameVersion, id }) => {
   let spellName = "";
 
   Object.values(SummonerSpells.data).forEach((spell) => {

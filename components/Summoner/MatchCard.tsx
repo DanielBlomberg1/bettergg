@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { MatchData } from "../../types/matchData";
 import { queueModes } from "../../utils/queueTypes";
 
@@ -30,7 +29,7 @@ interface MatchCardContentsProps {
   item6Id: number;
 }
 
-const MatchCard: FC<MatchCardProps> = ({ match, summonerid }) => {
+const MatchCard: React.FC<MatchCardProps> = ({ match, summonerid }) => {
   let playerWon = false;
   let inspectedParticipant: any;
 

@@ -1,12 +1,11 @@
 import Image from "next/image";
-import { FC } from "react";
 
 interface Props {
   gameVersion: string;
   id: number;
 }
 
-const SummonerIcon: FC<Props> = ({ gameVersion, id }) => {
+const SummonerIcon: React.FC<Props> = ({ gameVersion, id }) => {
   return (
     <Image
       alt="SummonerSpellIcon"

@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { MatchData } from "../../types/matchData";
 import { queueMode, queueModes, queues } from "../../utils/queueTypes";
 import ChampionIcon from "../Images/ChampionIcon";
@@ -26,7 +25,7 @@ interface Props {
   item6Id: number;
 }
 
-export const MatchCardContents: FC<Props> = ({ ...props }) => {
+export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
   const kda: number = (props.kills + props.assists) / props.deaths;
 
   const gameMode: queueMode = queues[props.gameType];
