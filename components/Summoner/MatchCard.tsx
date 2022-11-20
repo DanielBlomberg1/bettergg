@@ -42,21 +42,19 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, summonerid }) => {
     }
   });
 
-  console.log(match);
-
   const gameversion = match.info.gameVersion.split(".");
   const gameversionString = gameversion[0] + "." + gameversion[1] + ".1";
 
   const summoner1Id: number = inspectedParticipant.summoner1Id;
   const summoner2Id: number = inspectedParticipant.summoner2Id;
 
-  const item0Id: number = inspectedParticipant.item0Id;
-  const item1Id: number = inspectedParticipant.item1Id;
-  const item2Id: number = inspectedParticipant.item2Id;
-  const item3Id: number = inspectedParticipant.item3Id;
-  const item4Id: number = inspectedParticipant.item4Id;
-  const item5Id: number = inspectedParticipant.item5Id;
-  const item6Id: number = inspectedParticipant.item6Id;
+  const item0Id: number = inspectedParticipant.item0;
+  const item1Id: number = inspectedParticipant.item1;
+  const item2Id: number = inspectedParticipant.item2;
+  const item3Id: number = inspectedParticipant.item3;
+  const item4Id: number = inspectedParticipant.item4;
+  const item5Id: number = inspectedParticipant.item5;
+  const item6Id: number = inspectedParticipant.item6;
 
   const matchCardContentsProps: MatchCardContentsProps = {
     gameversion: gameversionString,

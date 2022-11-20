@@ -2,6 +2,7 @@ import { MatchData } from "../../types/matchData";
 import { queueMode, queueModes, queues } from "../../utils/queueTypes";
 import ChampionIcon from "../Images/ChampionIcon";
 import SummonerSpellIcon from "../Images/SummonerSpellIcon";
+import { ItemListHorizontal } from "../Itemlist/ItemList";
 import styles from "./MatchCard.module.css";
 
 interface Props {
@@ -80,22 +81,18 @@ export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
             </h3>
           </div>
           <div className={styles.column} style={{ margin: "50px" }}></div>
-          {gameMode?.map === "Summoner's Rift" && (
-            <div
-              className={styles.column}
-              style={{
-                position: "relative",
-                flexDirection: "column",
-                right: "0",
-                textAlign: "right",
-              }}
-            >
-              <h1>
-                Role{" "}
-                {props.playedRole === "UTILITY" ? "SUPPORT" : props.playedRole}
-              </h1>
-            </div>
-          )}
+          <ItemListHorizontal
+            items={[
+              { id: props.item0Id },
+              { id: props.item1Id },
+              { id: props.item2Id },
+              { id: props.item3Id },
+              { id: props.item4Id },
+              { id: props.item5Id },
+            ]}
+            gameVersion={props.gameversion}
+            rows={2}
+          />
         </div>
       </div>
     </div>

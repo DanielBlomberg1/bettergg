@@ -18,6 +18,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   items: [{ id: 3157 }, { id: 6655 }, { id: 3102 }] as IItem[],
   gameVersion: "12.21.1",
+  rows: 3,
 };
 
 export const Secondary = Template.bind({});
@@ -31,4 +32,5 @@ Secondary.args = {
     { id: 3020 },
   ] as IItem[],
   gameVersion: "12.21.1",
+  rows: 2,
 };

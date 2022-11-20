@@ -30,6 +30,12 @@ Primary.args = {
   assists: 5,
   summoner1Id: 4,
   summoner2Id: 14,
+  item0Id: 1054,
+  item1Id: 6632,
+  item2Id: 3074,
+  item3Id: 3047,
+  item4Id: 1031,
+  item5Id: 3340,
 };
 
 export const Secondary = Template.bind({});
