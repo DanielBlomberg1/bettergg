@@ -48,11 +48,20 @@ export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
           playedChampion={props.playedChampion}
         />
         <div className={styles.content}>
-          <div>
+          <div
+            className={styles.column}
+            style={{
+              width: 64,
+              position: "relative",
+            }}
+          >
             <div
-              className="column"
               style={{
                 width: 64,
+                alignItems: "center",
+                justifyContent: "center",
+                position: "absolute",
+                top: "10%",
               }}
             >
               <SummonerSpellIcon

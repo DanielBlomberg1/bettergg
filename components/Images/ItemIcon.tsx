@@ -7,7 +7,7 @@ interface Props {
 
 const ItemIcon: React.FC<Props> = ({ gameVersion, id }) => {
   const ITEM =
-    id === 0 ? (
+    id === 0 || !id ? (
       <></>
     ) : (
       <Image
