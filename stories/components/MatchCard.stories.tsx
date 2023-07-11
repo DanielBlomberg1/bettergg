@@ -50,4 +50,11 @@ Secondary.args = {
   assists: 10,
   summoner1Id: 4,
   summoner2Id: 14,
+  item0Id: 1054,
+  item1Id: 1054,
+  item2Id: 1054,
+  item3Id: 1054,
+  item4Id: 1054,
+  item5Id: 1054,
+  item6Id: 1054,
 };

@@ -1,6 +1,7 @@
 import { MatchData } from "../../types/matchData";
 import { queueMode, queueModes, queues } from "../../utils/queueTypes";
 import ChampionIcon from "../Images/ChampionIcon";
+import ItemIcon from "../Images/ItemIcon";
 import SummonerSpellIcon from "../Images/SummonerSpellIcon";
 import { ItemListHorizontal } from "../Itemlist/ItemList";
 import styles from "./MatchCard.module.css";
@@ -27,8 +28,6 @@ interface Props {
 }
 
 export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
-  const kda: number = (props.kills + props.assists) / props.deaths;
-
   const gameMode: queueMode = queues[props.gameType];
 
   return (
@@ -49,21 +48,24 @@ export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
           playedChampion={props.playedChampion}
         />
         <div className={styles.content}>
-          <div
-            className="column"
-            style={{
-              width: 64,
-            }}
-          >
-            <SummonerSpellIcon
-              gameVersion={props.gameversion}
-              id={props.summoner1Id}
-            />
-            <SummonerSpellIcon
-              gameVersion={props.gameversion}
-              id={props.summoner2Id}
-            />
+          <div>
+            <div
+              className="column"
+              style={{
+                width: 64,
+              }}
+            >
+              <SummonerSpellIcon
+                gameVersion={props.gameversion}
+                id={props.summoner1Id}
+              />
+              <SummonerSpellIcon
+                gameVersion={props.gameversion}
+                id={props.summoner2Id}
+              />
+            </div>
           </div>
+
           <div className={styles.column} style={{}}>
             <h1> {gameMode?.name || "Uknown"} </h1>
             <h1 className={styles.xl}>
@@ -71,28 +73,29 @@ export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
                 {props.kills} / {props.deaths} /{props.assists}
               </a>
             </h1>
-            <h3
-              style={{
-                color: kda > 8 ? "#ffc011" : kda > 0.5 ? "#3f3e3e" : "#a51818",
-              }}
-            >
-              {" "}
-              {kda.toFixed(2)}
-            </h3>
           </div>
-          <div className={styles.column} style={{ margin: "50px" }}></div>
-          <ItemListHorizontal
-            items={[
-              { id: props.item0Id },
-              { id: props.item1Id },
-              { id: props.item2Id },
-              { id: props.item3Id },
-              { id: props.item4Id },
-              { id: props.item5Id },
-            ]}
-            gameVersion={props.gameversion}
-            rows={2}
-          />
+          <div
+            className={styles.column}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <ItemListHorizontal
+              items={[
+                { id: props.item0Id },
+                { id: props.item1Id },
+                { id: props.item2Id },
+                { id: props.item3Id },
+                { id: props.item4Id },
+                { id: props.item5Id },
+              ]}
+              gameVersion={props.gameversion}
+              rows={2}
+            />
+            <ItemIcon id={props.item6Id} gameVersion={props.gameversion} />
+          </div>
         </div>
       </div>
     </div>
