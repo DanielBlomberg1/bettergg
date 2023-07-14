@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+import Link from "next/link";
 import styles from "../../styles/SearchPage.module.css";
 
 const SearchPage = () => {
@@ -21,7 +22,12 @@ const SearchPage = () => {
 
   return (
     <>
-      <h1 className={styles.title}>Better.GG</h1>
+      <h1 className={styles.title}>
+        {" "}
+        <Link href="/">
+          <a className={styles.link}>Better.GG</a>
+        </Link>
+      </h1>
       <div className={styles.container}>
         <input
           className={styles.input}

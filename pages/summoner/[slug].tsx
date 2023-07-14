@@ -1,4 +1,5 @@
 import { InferGetServerSidePropsType } from "next";
+import Appbar from "../../components/Appbar/Appbar";
 import SummonerIcon from "../../components/Images/SummonerIcon";
 import MatchCard from "../../components/Summoner/MatchCard";
 import { MatchData } from "../../types/matchData";
@@ -12,22 +13,25 @@ export default function SummonerPage({
   const gameversionString = gameversion[0] + "." + gameversion[1] + ".1";
 
   return (
-    <div>
-      <h1>{summonerData.name}</h1>
-      <SummonerIcon
-        gameVersion={gameversionString}
-        id={summonerData.profileIconId}
-      />
+    <>
+      <Appbar />
+      <div>
+        <h1>{summonerData.name}</h1>
+        <SummonerIcon
+          gameVersion={gameversionString}
+          id={summonerData.profileIconId}
+        />
 
-      <div style={{ width: 800 }}>
-        <h1 style={{ textAlign: "center" }}>MatchHistory</h1>
-        {matchArr.map((match: MatchData) => (
-          <div key={match.info.gameId}>
-            <MatchCard match={match} summonerid={summonerData.puuid} />
-          </div>
-        ))}
+        <div style={{ width: 800 }}>
+          <h1 style={{ textAlign: "center" }}>MatchHistory</h1>
+          {matchArr.map((match: MatchData) => (
+            <div key={match.info.gameId}>
+              <MatchCard match={match} summonerid={summonerData.puuid} />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

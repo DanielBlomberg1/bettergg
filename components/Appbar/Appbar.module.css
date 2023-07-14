@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&display=swap");
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 10vh;
+  width: 150vh;
+  border-radius: 20px;
+  box-shadow: 0 0 8px 8px #3f3e3e;
+}
+
+.containerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 10vh;
+  width: 100%;
+}
+
+.item {
+  margin: 0 3vh;
+}
+
+.verticalCenter {
+  margin: 0;
+  position: absolute;
+  top: 20%;
+}
+
+.center {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 50vh;
+  margin-right: 50vh;
+}
+
+.xl {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.link {
+  text-decoration: none;
+  transition: color 150ms ease-in-out;
+}
+.link:hover {
+  border: 1px solid teal;
+  color: rgb(48, 199, 199);
+}
