@@ -29,6 +29,7 @@ interface Props {
 
 export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
   const gameMode: queueMode = queues[props.gameType];
+  const KDA = (props.kills + props.assists) / props.deaths;
 
   return (
     <div
@@ -78,7 +79,15 @@ export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
           <div className={styles.column} style={{}}>
             <h1> {gameMode?.name || "Uknown"} </h1>
             <h1 className={styles.xl}>
-              <a>
+              <a
+                style={
+                  KDA < 1
+                    ? { color: "rgb(173, 39, 24)" }
+                    : KDA > 5
+                    ? { color: "rgb(237, 190, 33)" }
+                    : {}
+                }
+              >
                 {props.kills} / {props.deaths} /{props.assists}
               </a>
             </h1>
