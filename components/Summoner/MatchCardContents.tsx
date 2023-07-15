@@ -85,6 +85,8 @@ export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
                     ? { color: "rgb(173, 39, 24)" }
                     : KDA > 5
                     ? { color: "rgb(237, 190, 33)" }
+                    : KDA > 3
+                    ? { color: "98, 136, 227" }
                     : {}
                 }
               >
