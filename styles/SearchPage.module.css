@@ -3,7 +3,7 @@
   display: flex;
   position: flex;
   flex-direction: row;
-  height: 90%;
+  height: 6vh;
   width: 90%;
   margin-left: 5%;
   background: #272622;
@@ -24,14 +24,14 @@
 
 .button {
   background-color: #312f2b;
-  border-radius: 25px;
+  border-radius: 20px;
   border: none;
   color: white;
   padding: 15px 32px;
   text-align: right;
   text-decoration: none;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 4px 0.5rem;
   cursor: pointer;
   right: 0;
 }

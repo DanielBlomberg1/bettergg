@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Link from "next/link";
+import RegionPicker from "../../components/RegionPicker/RegionPicker";
 import styles from "../../styles/SearchPage.module.css";
 
 const SearchPage = () => {
@@ -15,11 +16,6 @@ const SearchPage = () => {
   const fetchSummoner = async () => {
     router.push("/summoner/" + region + "/" + value);
   };
-
-  useEffect(() => {
-    setValue(value);
-    console.log(value);
-  }, [value]);
 
   return (
     <>
@@ -36,6 +32,8 @@ const SearchPage = () => {
           onInput={(e) => setValue((e.target as HTMLTextAreaElement).value)}
           placeholder="Type in your summoner name..."
         />
+
+        <RegionPicker onChange={(value: string) => setRegion(value)} />
 
         <button className={styles.button} onClick={() => fetchSummoner()}>
           Search
