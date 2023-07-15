@@ -11,9 +11,14 @@ export interface SummonerData {
   summonerLevel: number;
 }
 
-async function fetchSummonerData(summonerName: string): Promise<SummonerData> {
+async function fetchSummonerData(
+  summonerName: string,
+  region: string
+): Promise<SummonerData> {
   const response = await fetch(
-    "https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
+    "https://" +
+      region +
+      ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
       summonerName +
       "?api_key=" +
       process.env.LEAGUE_TOKEN
@@ -26,8 +31,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SummonerData>
 ) {
-  const { slug } = req.query;
-  const data: SummonerData = await fetchSummonerData(slug as string);
+  const { summonerName, region } = req.query;
+  const data: SummonerData = await fetchSummonerData(
+    summonerName as string,
+    region as string
+  );
 
   res.status(200).json(data);
 }

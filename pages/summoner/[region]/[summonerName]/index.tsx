@@ -1,10 +1,10 @@
 import { InferGetServerSidePropsType } from "next";
-import Appbar from "../../components/Appbar/Appbar";
-import SummonerIcon from "../../components/Images/SummonerIcon";
-import MatchCard from "../../components/Summoner/MatchCard";
-import styles from "../../styles/Summoner.module.css";
-import { MatchData } from "../../types/matchData";
-import { SummonerData } from "../api/summoner/[...slug]";
+import Appbar from "../../../../components/Appbar/Appbar";
+import SummonerIcon from "../../../../components/Images/SummonerIcon";
+import MatchCard from "../../../../components/Summoner/MatchCard";
+import styles from "../../../../styles/Summoner.module.css";
+import { MatchData } from "../../../../types/matchData";
+import { SummonerData } from "../../../api/summoner/[region]/[summonerName]";
 
 export default function SummonerPage({
   summonerData,
@@ -39,31 +39,31 @@ export default function SummonerPage({
 }
 
 export async function getServerSideProps(context: any) {
-  let { slug } = context.params;
-  slug.trim();
+  let { region, summonerName } = context.params;
+  summonerName.trim();
 
-  const response = await fetch(`${process.env.HOSTED_AT}/api/summoner/${slug}`);
+  const response = await fetch(
+    `${process.env.HOSTED_AT}/api/summoner/${region}/${summonerName}`
+  );
   const summonerData: SummonerData = await response.json();
 
-  const data = await fetch(
-    "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" +
-      summonerData.puuid +
-      "/ids?start=0&count=5&api_key=" +
-      process.env.LEAGUE_TOKEN
+  const matchResponse = await fetch(
+    `${process.env.HOSTED_AT}/api/matchids/${summonerData.puuid}`,
+    {
+      headers: { "Content-Type": "application/json" },
+    }
   );
-  const matchIds = await data.json();
+  let matchIds = await matchResponse.json();
+  matchIds = matchIds.data;
 
-  let matchArr: MatchData[] = new Array();
+  let matchArr: MatchData[] = [];
 
   if (matchIds.length > 0) {
     for (let i = 0; i < matchIds.length; i++) {
       const matchResponse = await fetch(
-        "https://europe.api.riotgames.com/lol/match/v5/matches/" +
-          matchIds[i] +
-          "?api_key=" +
-          process.env.LEAGUE_TOKEN
+        `${process.env.HOSTED_AT}/api/match/${matchIds[i]}`
       );
-      const matchData: MatchData = await matchResponse.json();
+      const matchData: MatchData = (await matchResponse.json()).matchData;
       matchArr = [...matchArr, matchData];
     }
   }

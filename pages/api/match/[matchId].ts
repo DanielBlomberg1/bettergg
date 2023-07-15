@@ -22,10 +22,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const { slug } = req.query;
+  const { matchId } = req.query;
 
-  if (slug) {
-    let matchData = await fetchMatchData(slug[0]);
+  if (matchId) {
+    let matchData = await fetchMatchData(matchId as string);
 
     res.status(200).json({ matchData });
   } else {

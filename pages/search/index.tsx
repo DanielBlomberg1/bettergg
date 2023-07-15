@@ -10,9 +10,10 @@ const SearchPage = () => {
   //send request to server to get data
   // of the search results
   const [value, setValue] = useState("");
+  const [region, setRegion] = useState("eun1");
 
   const fetchSummoner = async () => {
-    router.push("/summoner/" + value);
+    router.push("/summoner/" + region + "/" + value);
   };
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const SearchPage = () => {
           onInput={(e) => setValue((e.target as HTMLTextAreaElement).value)}
           placeholder="Type in your summoner name..."
         />
+
         <button className={styles.button} onClick={() => fetchSummoner()}>
           Search
         </button>
