@@ -11,13 +11,7 @@ const SummonerIcon: React.FC<Props> = ({ gameVersion, id }) => {
       alt="SummonerSpellIcon"
       width={200}
       height={200}
-      src={
-        "http://ddragon.leagueoflegends.com/cdn/" +
-        gameVersion +
-        "/img/profileicon/" +
-        id +
-        ".png"
-      }
+      src={"/img/profileicon/" + id + ".png"}
     />
   );
 };
