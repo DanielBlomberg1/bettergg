@@ -6,14 +6,12 @@ import Loading from "../../../../components/Loading/Loading";
 import MatchCard from "../../../../components/Summoner/MatchCard";
 import styles from "../../../../styles/Summoner.module.css";
 import { MatchData } from "../../../../types/matchData";
-import useWindowDimensions from "../../../../utils/useWindowDimensions";
 import { SummonerData } from "../../../api/summoner/[region]/[summonerName]";
 
 export default function SummonerPage({
   summonerData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [matchArr, setMatchArr] = useState<MatchData[]>([]);
-  const { width } = useWindowDimensions();
 
   useEffect(() => {
     const fetchClientSide = async () => {

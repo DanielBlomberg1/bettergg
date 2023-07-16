@@ -40,12 +40,18 @@
 }
 
 .xl {
-  font-size: 3rem;
   font-weight: 900;
 }
 
 .link {
   text-decoration: none;
+  @media screen and (max-width: 600px) {
+    font-size: x-large !important;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: x-large !important;
+  }
+
   transition: color 150ms ease-in-out;
 }
 .link:hover {

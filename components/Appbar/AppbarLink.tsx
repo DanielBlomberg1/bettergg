@@ -11,7 +11,7 @@ const AppbarLink: React.FC<IAppbarLink> = ({ text, href }) => {
     <h1 className={styles.item}>
       <Link
         className={styles.xl}
-        style={{ marginLeft: 5, lineHeight: "75px" }}
+        style={{ marginLeft: 5, lineHeight: "1vh" }}
         href={href}
       >
         <a className={styles.link}>{text}</a>

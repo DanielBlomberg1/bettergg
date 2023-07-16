@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { MatchData } from "../../types/matchData";
 import { queueMode, queueModes, queues } from "../../utils/queueTypes";
 import useWindowDimensions from "../../utils/useWindowDimensions";
@@ -32,10 +31,8 @@ interface Props {
 export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
   const gameMode: queueMode = queues[props.gameType];
   const KDA = (props.kills + props.assists) / props.deaths;
-  const { height, width } = useWindowDimensions();
-  useEffect(() => {
-    console.log(width);
-  }, [width]);
+  const dims = useWindowDimensions();
+  const width = dims?.width || 0;
 
   return (
     <div
