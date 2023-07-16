@@ -6,6 +6,16 @@ interface Props {
 }
 
 const ChampionIcon: React.FC<Props> = ({ gameVersion, playedChampion }) => {
+  if (gameVersion === "12.6.1") {
+    return (
+      <Image
+        alt="ChampionIcon"
+        width={128}
+        height={128}
+        src={"/img/champion/" + playedChampion + ".png"}
+      />
+    );
+  }
   return (
     <Image
       alt="ChampionIcon"

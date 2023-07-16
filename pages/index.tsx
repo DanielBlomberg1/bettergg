@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import Head from "next/head";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
               </p>
             </a>
           </Link>
-          <Link href="/items">
+          <Link href="/builds">
             <a className={styles.card}>
               <h2>Find new builds</h2>
               <p>
