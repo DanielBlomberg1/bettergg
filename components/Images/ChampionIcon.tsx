@@ -9,8 +9,8 @@ const ChampionIcon: React.FC<Props> = ({ gameVersion, playedChampion }) => {
   return (
     <Image
       alt="ChampionIcon"
-      width={200}
-      height={200}
+      width={128}
+      height={128}
       src={
         "http://ddragon.leagueoflegends.com/cdn/" +
         gameVersion +

@@ -1,6 +1,8 @@
 .container {
   border-radius: 20px;
   margin: 5vh;
+  width: 90vw;
+  padding: 1vh;
   box-shadow: 0 0 8px 8px #3f3e3e;
 }
 .lowerContainer {
@@ -24,7 +26,7 @@
 .verticalCenter {
   margin: 0;
   position: absolute;
-  top: 20%;
+  top: 0;
 }
 
 .center {

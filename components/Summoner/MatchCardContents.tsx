@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { MatchData } from "../../types/matchData";
 import { queueMode, queueModes, queues } from "../../utils/queueTypes";
+import useWindowDimensions from "../../utils/useWindowDimensions";
 import ChampionIcon from "../Images/ChampionIcon";
 import ItemIcon from "../Images/ItemIcon";
 import SummonerSpellIcon from "../Images/SummonerSpellIcon";
@@ -30,91 +32,104 @@ interface Props {
 export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
   const gameMode: queueMode = queues[props.gameType];
   const KDA = (props.kills + props.assists) / props.deaths;
+  const { height, width } = useWindowDimensions();
+  useEffect(() => {
+    console.log(width);
+  }, [width]);
 
   return (
     <div
+      className={styles.card}
       style={{ backgroundColor: props.playerWon ? "#58c26a" : "#e07d7d" }}
-      className={styles.container}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          height: 200,
-          overflow: "hidden",
-        }}
-      >
-        <ChampionIcon
-          gameVersion={props.gameversion}
-          playedChampion={props.playedChampion}
-        />
-        <div className={styles.content}>
-          <div
-            className={styles.column}
-            style={{
-              width: 64,
-              position: "relative",
-            }}
-          >
+      <div className={styles.container}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            overflow: "hidden",
+          }}
+        >
+          <ChampionIcon
+            gameVersion={props.gameversion}
+            playedChampion={props.playedChampion}
+          />
+          <div className={styles.content}>
             <div
+              className={styles.column}
               style={{
                 width: 64,
-                alignItems: "center",
-                justifyContent: "center",
-                position: "absolute",
-                top: "10%",
+                position: "relative",
               }}
             >
-              <SummonerSpellIcon
-                gameVersion={props.gameversion}
-                id={props.summoner1Id}
-              />
-              <SummonerSpellIcon
-                gameVersion={props.gameversion}
-                id={props.summoner2Id}
-              />
+              <div className={styles.centerP}>
+                <SummonerSpellIcon
+                  gameVersion={props.gameversion}
+                  id={props.summoner1Id}
+                />
+                <SummonerSpellIcon
+                  gameVersion={props.gameversion}
+                  id={props.summoner2Id}
+                />
+              </div>
             </div>
-          </div>
+            {width > 600 && (
+              <div className={styles.column}>
+                <h1
+                  style={
+                    width < 800
+                      ? { margin: "1vh", fontSize: "1.5rem" }
+                      : { margin: "1vh" }
+                  }
+                >
+                  {" "}
+                  {gameMode?.name || "Uknown"}{" "}
+                </h1>
+                <h1
+                  className={styles.xl}
+                  style={{ marginLeft: "1vh", marginTop: 0 }}
+                >
+                  <a
+                    style={
+                      KDA < 1
+                        ? { color: "rgb(173, 39, 24)" }
+                        : KDA > 5
+                        ? { color: "rgb(237, 190, 33)" }
+                        : KDA > 3
+                        ? { color: "98, 136, 227" }
+                        : {}
+                    }
+                  >
+                    {props.kills} / {props.deaths} /{props.assists}
+                  </a>
+                </h1>
+              </div>
+            )}
 
-          <div className={styles.column} style={{}}>
-            <h1> {gameMode?.name || "Uknown"} </h1>
-            <h1 className={styles.xl}>
-              <a
-                style={
-                  KDA < 1
-                    ? { color: "rgb(173, 39, 24)" }
-                    : KDA > 5
-                    ? { color: "rgb(237, 190, 33)" }
-                    : KDA > 3
-                    ? { color: "98, 136, 227" }
-                    : {}
-                }
+            {width > 900 && (
+              <div
+                className={styles.column}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
-                {props.kills} / {props.deaths} /{props.assists}
-              </a>
-            </h1>
-          </div>
-          <div
-            className={styles.column}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <ItemListHorizontal
-              items={[
-                { id: props.item0Id },
-                { id: props.item1Id },
-                { id: props.item2Id },
-                { id: props.item3Id },
-                { id: props.item4Id },
-                { id: props.item5Id },
-              ]}
-              gameVersion={props.gameversion}
-              rows={2}
-            />
-            <ItemIcon id={props.item6Id} gameVersion={props.gameversion} />
+                <ItemListHorizontal
+                  items={[
+                    { id: props.item0Id },
+                    { id: props.item1Id },
+                    { id: props.item2Id },
+                    { id: props.item3Id },
+                    { id: props.item4Id },
+                    { id: props.item5Id },
+                  ]}
+                  gameVersion={props.gameversion}
+                  rows={2}
+                />
+                <ItemIcon id={props.item6Id} gameVersion={props.gameversion} />
+              </div>
+            )}
           </div>
         </div>
       </div>
