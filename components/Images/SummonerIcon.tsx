@@ -8,10 +8,16 @@ interface Props {
 const SummonerIcon: React.FC<Props> = ({ gameVersion, id }) => {
   return (
     <Image
-      alt="SummonerSpellIcon"
+      alt="SummonerIcon"
       width={200}
       height={200}
-      src={"/img/profileicon/" + id + ".png"}
+      src={
+        "http://ddragon.leagueoflegends.com/cdn/" +
+        gameVersion +
+        "/img/profileicon/" +
+        id +
+        ".png"
+      }
     />
   );
 };
