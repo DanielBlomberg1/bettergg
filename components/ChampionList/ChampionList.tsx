@@ -1,15 +1,15 @@
-import * as champions from "../../utils/champion.json";
+import champions from "../../utils/champion.json";
 import ChampionIcon from "../Images/ChampionIcon";
 import styles from "./ChampionList.module.css";
 interface IChampionList {}
 
 const ChampionList: React.FC<IChampionList> = () => {
   const BOX_SIZE = 128;
-  const rows = Object.values(champions.data).length / 10;
+  const rows = Object.values(champions.data).length / 10 + 1;
+  // center the div
   return (
     <>
-      <div>
-        <h1>ChampionList</h1>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           className={styles.container}
           style={{ width: 10 * BOX_SIZE, height: BOX_SIZE * rows }}

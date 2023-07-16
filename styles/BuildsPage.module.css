@@ -2,7 +2,8 @@
   border-radius: 20px;
   margin: 5vh;
   width: 90vw;
-  padding: 1vh;
+  height: 100%;
+  padding: 1vh 0, 2vw, 5vh;
   box-shadow: 0 0 8px 8px #3f3e3e;
 }
 
