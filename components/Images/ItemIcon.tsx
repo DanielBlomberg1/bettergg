@@ -14,16 +14,18 @@ export const itemDescJsx = (itemDescription: string) => {
   const reBr = new RegExp(/<br\s*[/]?>/gi);
 
   let itemDescritionBlocks = itemDescription.split("<br>");
-  let itemDescJsx = itemDescritionBlocks.map((block) => {
+
+  let jsx = [];
+  for (let i = 0; i < itemDescritionBlocks.length; i++) {
     let uuid = uuidv4();
-    return (
+    jsx.push(
       <span key={uuid}>
-        {block.replace(reBr, "\n").replace(re, "")}
-        <br />
+        {itemDescritionBlocks[i].replace(reBr, "\n").replace(re, "")}
+        {i !== itemDescritionBlocks.length - 1 ? <br /> : <></>}
       </span>
     );
-  });
-  return itemDescJsx;
+  }
+  return jsx;
 };
 
 const ItemIcon: React.FC<Props> = ({ gameVersion, id }) => {
