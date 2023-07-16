@@ -29,10 +29,10 @@ interface Props {
 }
 
 export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
-  const gameMode: queueMode = queues[props.gameType];
+  let gameMode: queueMode = queues[props.gameType];
+  gameMode.name = gameMode.name.split(" ")[0];
   const KDA = (props.kills + props.assists) / props.deaths;
-  const dims = useWindowDimensions();
-  const width = dims?.width || 0;
+  const { width } = useWindowDimensions();
 
   return (
     <div
@@ -71,20 +71,23 @@ export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
               </div>
             </div>
             {width > 600 && (
-              <div className={styles.column}>
+              <div className={styles.column} style={{ width: "225px" }}>
                 <h1
                   style={
                     width < 800
-                      ? { margin: "1vh", fontSize: "1.5rem" }
+                      ? { margin: "1vh", fontSize: "2.0rem" }
                       : { margin: "1vh" }
                   }
                 >
-                  {" "}
-                  {gameMode?.name || "Uknown"}{" "}
+                  {gameMode?.name || "Uknown"}
                 </h1>
                 <h1
                   className={styles.xl}
-                  style={{ marginLeft: "1vh", marginTop: 0 }}
+                  style={
+                    width < 800
+                      ? { marginLeft: "1vh", marginTop: 0, fontSize: "1.5rem" }
+                      : { marginLeft: "1vh", marginTop: 0, fontSize: "2.0rem" }
+                  }
                 >
                   <a
                     style={
@@ -104,27 +107,33 @@ export const MatchCardContents: React.FC<Props> = ({ ...props }) => {
             )}
 
             {width > 900 && (
-              <div
-                className={styles.column}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <ItemListHorizontal
-                  items={[
-                    { id: props.item0Id },
-                    { id: props.item1Id },
-                    { id: props.item2Id },
-                    { id: props.item3Id },
-                    { id: props.item4Id },
-                    { id: props.item5Id },
-                  ]}
-                  gameVersion={props.gameversion}
-                  rows={2}
-                />
-                <ItemIcon id={props.item6Id} gameVersion={props.gameversion} />
+              <div style={{ right: "0", position: "relative" }}>
+                {" "}
+                <div
+                  className={styles.column}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <ItemListHorizontal
+                    items={[
+                      { id: props.item0Id },
+                      { id: props.item1Id },
+                      { id: props.item2Id },
+                      { id: props.item3Id },
+                      { id: props.item4Id },
+                      { id: props.item5Id },
+                    ]}
+                    gameVersion={props.gameversion}
+                    rows={2}
+                  />
+                  <ItemIcon
+                    id={props.item6Id}
+                    gameVersion={props.gameversion}
+                  />
+                </div>
               </div>
             )}
           </div>

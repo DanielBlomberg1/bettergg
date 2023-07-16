@@ -2,8 +2,7 @@ import { InferGetServerSidePropsType } from "next";
 import { useEffect, useState } from "react";
 import Appbar from "../../../../components/Appbar/Appbar";
 import SummonerIcon from "../../../../components/Images/SummonerIcon";
-import Loading from "../../../../components/Loading/Loading";
-import MatchCard from "../../../../components/Summoner/MatchCard";
+import { MatchHistory } from "../../../../components/MatchHistory/MatchHistory";
 import styles from "../../../../styles/Summoner.module.css";
 import { MatchData } from "../../../../types/matchData";
 import { SummonerData } from "../../../api/summoner/[region]/[summonerName]";
@@ -55,20 +54,9 @@ export default function SummonerPage({
             id={summonerData.profileIconId}
           />
 
-          <div>
-            <h1 style={{ textAlign: "center" }}>MatchHistory</h1>
-
-            {matchArr.length > 0 ? (
-              matchArr.map((match: MatchData) => (
-                <div key={match.info.gameId}>
-                  <MatchCard match={match} summonerid={summonerData.puuid} />
-                </div>
-              ))
-            ) : (
-              <div style={{ height: "100vh", marginTop: "10vh" }}>
-                <Loading />{" "}
-              </div>
-            )}
+          <div style={{ textAlign: "center" }}>
+            <h1>MatchHistory</h1>
+            <MatchHistory matchArr={matchArr} puuid={summonerData.puuid} />
           </div>
         </div>
       </div>
