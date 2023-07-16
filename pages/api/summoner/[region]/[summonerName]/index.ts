@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export interface SummonerData {
+  [x: string]: any;
   accountId: string;
   profileIconId: number;
   revisionDate: number;

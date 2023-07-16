@@ -73,6 +73,15 @@ export async function getServerSideProps(context: any) {
   );
   const summonerData: SummonerData = await response.json();
 
+  if (!summonerData || summonerData?.status?.status_code === 404) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/404",
+      },
+    };
+  }
+
   return {
     props: { summonerData }, // will be passed to the page component as props
   };
