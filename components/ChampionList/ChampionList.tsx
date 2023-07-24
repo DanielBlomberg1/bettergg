@@ -1,9 +1,12 @@
+import Tippy from "@tippyjs/react";
+import { useRouter } from "next/router";
 import champions from "../../utils/champion.json";
 import ChampionIcon from "../Images/ChampionIcon";
 import styles from "./ChampionList.module.css";
 interface IChampionList {}
 
 const ChampionList: React.FC<IChampionList> = () => {
+  const router = useRouter();
   const BOX_SIZE = 128;
   const rows = Object.values(champions.data).length / 10 + 1;
   // center the div
@@ -27,11 +30,24 @@ const ChampionList: React.FC<IChampionList> = () => {
               name = "Renata";
             }
             return (
-              <ChampionIcon
+              <Tippy
                 key={champion.id}
-                gameVersion={champions.version}
-                playedChampion={name}
-              />
+                theme="translucent"
+                placement="bottom-start"
+                content={
+                  <>
+                    <h2>{champion.name}</h2>
+                  </>
+                }
+              >
+                <span onClick={() => router.push("/builds/" + name)}>
+                  <ChampionIcon
+                    key={champion.id}
+                    gameVersion={champions.version}
+                    playedChampion={name}
+                  />
+                </span>
+              </Tippy>
             );
           })}
         </div>
