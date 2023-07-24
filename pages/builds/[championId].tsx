@@ -5,9 +5,9 @@ import styles from "../../styles/BuildsPage.module.css";
 import champions from "../../utils/champion.json";
 import { generateRandomRunes } from "../../utils/generateRandomRunes";
 
-interface IChampionList {}
+interface IChampionBuildPage {}
 
-const ChampionList: React.FC<IChampionList> = () => {
+const ChampionBuildPage: React.FC<IChampionBuildPage> = () => {
   const query = useRouter().query;
   const championName = query.championId as string;
   // center the div
@@ -26,5 +26,21 @@ const ChampionList: React.FC<IChampionList> = () => {
     </>
   );
 };
+export const getStaticProps = async (context: any) => {
+  const championId = context.params.championId;
+  return {
+    props: {
+      championId,
+    },
+  };
+};
 
-export default ChampionList;
+export const getStaticPaths = async () => {
+  const paths = Object.keys(champions.data).map((champion) => ({
+    params: { championId: champion },
+  }));
+
+  return { paths, fallback: false };
+};
+
+export default ChampionBuildPage;
