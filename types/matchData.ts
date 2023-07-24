@@ -87,23 +87,7 @@ export interface MatchData {
       onMyWayPings: number;
       participantId: number;
       pentaKills: number;
-      perks: {
-        statPerks: {
-          defense: number;
-          flex: number;
-          offense: number;
-        };
-        styles: {
-          description: string;
-          selections: {
-            perk: number;
-            var1: number;
-            var2: number;
-            var3: number;
-          }[];
-          style: number;
-        }[];
-      };
+      perks: Runes;
       physicalDamageDealt: number;
       physicalDamageDealtToChampions: number;
       physicalDamageTaken: number;
@@ -177,6 +161,24 @@ export interface MatchData {
     tournamentCode: string;
   };
 }
+
+export type Runes = {
+  statPerks: {
+    defense: number;
+    flex: number;
+    offense: number;
+  };
+  styles: {
+    description: string;
+    selections: {
+      perk: number;
+      var1: number;
+      var2: number;
+      var3: number;
+    }[];
+    style: number;
+  }[];
+};
 
 export type challengeType = {
   "12AssistStreakCount": number;
