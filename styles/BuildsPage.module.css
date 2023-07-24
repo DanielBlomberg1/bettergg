@@ -6,6 +6,11 @@
   padding: 1vh 0, 2vw, 5vh;
   box-shadow: 0 0 8px 8px #3f3e3e;
 }
+.xl {
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+}
 
 .title {
   font-size: 3rem;
