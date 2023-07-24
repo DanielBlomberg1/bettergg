@@ -12,6 +12,7 @@ const RuneComponent: React.FC<IRuneComponent> = ({ rune }) => {
   const pR = Object.values(rune.styles).map((style) => {
     // get the primary rune
     const runeStyle = Object.values(runeData).find((rn) => {
+      // get the lower tier runes for the primary rune
       style.selections.forEach((selection) => {
         rn.slots.forEach((slot) => {
           slot.runes.forEach((rn3) => {
@@ -21,6 +22,7 @@ const RuneComponent: React.FC<IRuneComponent> = ({ rune }) => {
           });
         });
       });
+      // return the correct primary rune data
       return rn.id === style.style;
     });
     return runeStyle;
