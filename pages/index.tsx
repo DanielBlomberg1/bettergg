@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import FreakyText from "../components/FreakyText/FreakyText";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -13,7 +14,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Better.gg</h1>
+        <FreakyText text="Better.gg" />
 
         <p className={styles.description}>
           Get better at league with statistics

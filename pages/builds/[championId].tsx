@@ -3,6 +3,7 @@ import ChampionIcon from "../../components/Images/ChampionIcon";
 import RuneComponent from "../../components/RuneComponent/RuneComponent";
 import styles from "../../styles/BuildsPage.module.css";
 import champions from "../../utils/champion.json";
+import { championNameTransformer } from "../../utils/championNameTransformer";
 import { generateRandomRunes } from "../../utils/generateRandomRunes";
 
 interface IChampionBuildPage {}
@@ -37,7 +38,7 @@ export const getStaticProps = async (context: any) => {
 
 export const getStaticPaths = async () => {
   const paths = Object.keys(champions.data).map((champion) => ({
-    params: { championId: champion },
+    params: { championId: championNameTransformer(champion) },
   }));
 
   return { paths, fallback: false };
