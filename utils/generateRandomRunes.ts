@@ -28,8 +28,6 @@ export const generateRandomRunes = (): Runes => {
     });
   }
 
-  console.log(secondaryLesserRunes);
-
   const subLesserRunes = secondaryLesserRunes.filter(
     (rune) => rune !== undefined
   );

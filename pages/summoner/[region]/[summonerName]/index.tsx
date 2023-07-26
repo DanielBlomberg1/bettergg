@@ -33,7 +33,6 @@ export default function SummonerPage({
           matches = [...matches, matchData];
         }
       }
-      console.log(matches);
       setMatchArr(matches);
     };
     fetchClientSide();
