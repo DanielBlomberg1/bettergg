@@ -37,8 +37,19 @@ export const getStaticProps = async (context: any) => {
 };
 
 export const getStaticPaths = async () => {
-  const paths = Object.keys(champions.data).map((champion) => ({
-    params: { championId: championNameTransformer(champion) },
+  const realChampionArray = Object.values(champions.data).map((champion) => {
+    champion.name = championNameTransformer(champion.name);
+    // No idea why champion NameTransformer is not enough getStaticPaths is a complete mystery to me.
+    if (champion.name === "RenataGlasc") {
+      champion.name = "Renata";
+    } else if (champion.name === "Nunu&Willump") {
+      champion.name = "Nunu";
+    }
+    return champion;
+  });
+
+  const paths = realChampionArray.map((champion) => ({
+    params: { championId: champion.name },
   }));
 
   return { paths, fallback: false };
