@@ -5,7 +5,6 @@ import { IItem, ItemListHorizontal } from "../../components/Itemlist/ItemList";
 import RuneComponent from "../../components/RuneComponent/RuneComponent";
 import styles from "../../styles/BuildsPage.module.css";
 import champions from "../../utils/champion.json";
-import { championNameTransformer } from "../../utils/championNameTransformer";
 import { generateRandomItemIds } from "../../utils/generateRandomItemIds";
 import { generateRandomRunes } from "../../utils/generateRandomRunes";
 
@@ -75,19 +74,8 @@ export const getStaticProps = async (context: any) => {
 };
 
 export const getStaticPaths = async () => {
-  const realChampionArray = Object.values(champions.data).map((champion) => {
-    champion.name = championNameTransformer(champion.name);
-    // No idea why champion NameTransformer is not enough getStaticPaths is a complete mystery to me.
-    if (champion.name === "RenataGlasc") {
-      champion.name = "Renata";
-    } else if (champion.name === "Nunu&Willump") {
-      champion.name = "Nunu";
-    }
-    return champion;
-  });
-
-  const paths = realChampionArray.map((champion) => ({
-    params: { championId: champion.name },
+  const paths = Object.values(champions.data).map((champion) => ({
+    params: { championId: champion.id },
   }));
 
   return { paths, fallback: false };
