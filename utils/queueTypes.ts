@@ -420,6 +420,12 @@ export const queues = {
     description: "Teamfight Tactics games",
     notes: null,
   },
+  1700: {
+    name: "SOULFIGHTER",
+    map: "CHERRY",
+    description: "Soul fight to death",
+    notes: "new game mode",
+  },
 };
 
 export type queueModes = keyof typeof queues;

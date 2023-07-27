@@ -24,16 +24,18 @@ export default function SummonerPage({
       matchIds = matchIds.data;
       let matches: MatchData[] = [];
 
-      if (matchIds.length > 0) {
-        for (let i = 0; i < matchIds.length; i++) {
-          const matchResponse = await fetch(
-            `${process.env.HOSTED_AT}/api/match/${matchIds[i]}`
-          );
-          const matchData: MatchData = (await matchResponse.json()).matchData;
-          matches = [...matches, matchData];
-        }
-      }
-      setMatchArr(matches);
+      const urls = matchIds.map((id: string) => {
+        return `${process.env.HOSTED_AT}/api/match/${id}`;
+      });
+
+      const requests = urls.map((url: string) =>
+        fetch(url).then((res) => res.json().then((data) => data.matchData))
+      );
+
+      const [...responses]: MatchData[] = await Promise.all(requests);
+      console.log(responses);
+
+      setMatchArr(responses);
     };
     fetchClientSide();
   }, []);
