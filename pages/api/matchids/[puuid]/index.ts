@@ -10,7 +10,7 @@ export default async function handler(
   const response = await fetch(
     "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" +
       puuid +
-      "/ids?start=0&count=10&api_key=" +
+      "/ids?start=0&count=5&api_key=" +
       process.env.LEAGUE_TOKEN
   );
 

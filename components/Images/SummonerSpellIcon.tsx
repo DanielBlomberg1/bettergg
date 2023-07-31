@@ -39,7 +39,13 @@ const SummonerSpellIcon: React.FC<Props> = ({ gameVersion, id }) => {
             alt="SummonerSpellIcon"
             width={64}
             height={64}
-            src={"/img/spell/" + spellId + ".png"}
+            src={
+              "http://ddragon.leagueoflegends.com/cdn/" +
+              gameVersion +
+              "/img/spell/" +
+              spellId +
+              ".png"
+            }
           />
         </span>
       </Tippy>
