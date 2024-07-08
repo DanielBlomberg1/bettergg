@@ -1,7 +1,6 @@
 .container {
   margin-top: 2%;
   display: flex;
-  position: flex;
   flex-direction: row;
   height: 6vh;
   width: 90%;
@@ -9,17 +8,43 @@
   background: #272622;
   border-radius: 20px;
   box-shadow: 0 0 10px 8px #3f3e3e;
-  justify-content: space-between;
+  align-items: center; /* Center items vertically */
 }
 
-.link {
+.input {
+  background-color: #252523;
+  border: none;
+  width: 50%; /* Adjust width as needed */
+  margin-left: 1%;
+  text-align: left;
   text-decoration: none;
-  transition: color 150ms ease-in-out;
+  display: inline-block;
+  font-size: 16px;
+  outline: none;
+  color: white;
 }
 
-.link:hover {
-  border: 1px solid teal;
-  color: rgb(48, 199, 199);
+.taglineContainer {
+  display: flex;
+  flex: 1; /* Adjust flex as needed */
+}
+
+.taglineInput {
+  background-color: #252523;
+  border: none;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  outline: none;
+  color: white;
+}
+
+.regionPickerContainer {
+  display: flex;
+  flex: 1; /* Adjust flex as needed */
+  justify-content: flex-end; /* Align to the right */
 }
 
 .button {
@@ -33,21 +58,6 @@
   font-size: 16px;
   margin: 4px 0.5rem;
   cursor: pointer;
-  right: 0;
-}
-
-.input {
-  background-color: #252523;
-  border: none;
-  width: 92%;
-  margin-left: 1%;
-  text-align: left;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  outline: none;
-  color: white;
 }
 
 .title {
@@ -56,4 +66,5 @@
   margin-top: 2%;
   font-size: 2.5rem;
   font-weight: 900;
+  width: 100%; /* Ensure it takes full width to center text */
 }

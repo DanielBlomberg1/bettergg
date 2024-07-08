@@ -1,11 +1,11 @@
 import { InferGetServerSidePropsType } from "next";
 import { useEffect, useState } from "react";
-import Appbar from "../../../../components/Appbar/Appbar";
-import SummonerIcon from "../../../../components/Images/SummonerIcon";
-import { MatchHistory } from "../../../../components/MatchHistory/MatchHistory";
-import styles from "../../../../styles/Summoner.module.css";
-import { MatchData } from "../../../../types/matchData";
-import { SummonerData } from "../../../api/summoner/[region]/[summonerName]";
+import Appbar from "../../../../../components/Appbar/Appbar";
+import SummonerIcon from "../../../../../components/Images/SummonerIcon";
+import { MatchHistory } from "../../../../../components/MatchHistory/MatchHistory";
+import styles from "../../../../../styles/Summoner.module.css";
+import { MatchData } from "../../../../../types/matchData";
+import { SummonerData } from "../../../../api/summoner/[region]/[summonerName]/[tagline]";
 
 export default function SummonerPage({
   summonerData,
@@ -23,6 +23,8 @@ export default function SummonerPage({
       let matchIds = await matchResponse.json();
       matchIds = matchIds.data;
       let matches: MatchData[] = [];
+
+      console.log("ss", matchIds);
 
       const urls = matchIds.map((id: string) => {
         return `${process.env.HOSTED_AT}/api/match/${id}`;
@@ -66,11 +68,11 @@ export default function SummonerPage({
 }
 
 export async function getServerSideProps(context: any) {
-  let { region, summonerName } = context.params;
+  let { region, summonerName, tagline } = context.params;
   summonerName.trim();
 
   const response = await fetch(
-    `${process.env.HOSTED_AT}/api/summoner/${region}/${summonerName}`
+    `${process.env.HOSTED_AT}/api/summoner/${region}/${summonerName}/${tagline}`
   );
   const summonerData: SummonerData = await response.json();
 

@@ -14,11 +14,14 @@ const SearchPage = () => {
   const [summonerName, setSummonerName] = useState("");
   const [region, setRegion] = useState("eun1");
   const [isLoading, setIsLoading] = useState(false);
+  const [tagline, setTagline] = useState("#EUNE");
 
   const fetchSummoner = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    router.push("/summoner/" + region + "/" + summonerName);
+    router.push(
+      "/summoner/" + region + "/" + summonerName + "/" + tagline.slice(1)
+    );
   };
 
   return (
@@ -41,9 +44,20 @@ const SearchPage = () => {
               }
               placeholder="Type in your summoner name..."
             />
-
-            <RegionPicker onChange={(value: string) => setRegion(value)} />
-
+            <div className={styles.taglineContainer}>
+              <input
+                className={styles.taglineInput}
+                type="text"
+                onInput={(e) =>
+                  setTagline((e.target as HTMLTextAreaElement).value)
+                }
+                value="#EUNE"
+                style={{ marginLeft: "8px", flex: "0 1 auto" }}
+              />
+            </div>
+            <div className={styles.regionPickerContainer}>
+              <RegionPicker onChange={(value: string) => setRegion(value)} />
+            </div>
             <button type="submit" className={styles.button}>
               Search
             </button>
